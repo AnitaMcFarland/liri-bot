@@ -55,7 +55,7 @@ Files needed:
 `Name of the venue: Tacoma Dome
 Venue:Tacoma
 c:\Users\anita\Desktop\Assignments\liri-bot\liri2.js:50
-          console.log("Date of the Event: " + bandsintown[0].venue.datetime("HH:mm"));`
+          console.log("Date of the Event: " + bandsintown[0].venue.datetime("MM/DD/YYYY"));`
                                                                    ^
 
 TypeError: bandsintown[0].venue.datetime is not a function
@@ -63,6 +63,7 @@ TypeError: bandsintown[0].venue.datetime is not a function
 ***Movie-this:***
 
 (works)
+![Movie-this screenshot](https://github.com/AnitaMcFarland/liri-bot/blob/master/images/movie-this.png)
 
 `$ node liri.js movie-this "Star Wars"
 this is loaded
