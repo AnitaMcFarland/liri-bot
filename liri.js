@@ -57,7 +57,7 @@ function spotifyThis(){
 
     var spotify = new Spotify({
         id: "d63442d2266e4fa5b56d6f503b3397a1",
-        secret: "f1aba38db6c24267a02301d55e1b526et",
+        secret: "f1aba38db6c24267a02301d55e1b526e",
     });
         spotify
         .request('https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
@@ -82,7 +82,7 @@ function spotifyThis(){
         }); //end spotify.search
 }
 function movieThis(){
-    var queryUrl = "https://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=d63442d2266e4fa5b56d6f503b3397a1";
+    var queryUrl = "https://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=326e5bfc"; 
      
     console.dir(queryUrl);
    request(queryUrl, function (error, response, body) {

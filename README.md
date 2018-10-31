@@ -62,19 +62,30 @@ TypeError: bandsintown[0].venue.datetime is not a function
 
 ***Movie-this:***
 
-(link won't connect)
-
-`$ node liri2.js movie-this 'Halloween'
+(works)
+`$ node liri.js movie-this "Star Wars"
 this is loaded
-You want movie info on  Halloween
-'https://www.omdbapi.com/?t=Halloween&y=&plot=short&apikey=d63442d2266e4fa5b56d6f503b3397a1'`
+You want movie info on  Star Wars
+'https://www.omdbapi.com/?t=Star Wars&y=&plot=short&apikey=326e5bfc'
+'Title of the movie: Star Wars: Episode IV - A New Hope'
+'Year the movie came out: 1977'
+'imdbRating: 8.6'
+'Rotten Tomatoes Rating of the movie: 93%'
+'Language: English'
+'Plot: Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire\'s world-destroying battle station, while also attempting to rescue Princess Leia from the evil Darth Vader.'
+'Actors: Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing'`
 
 ***Spotify-this:***
 
-(Invalid client)
+(this is loaded
+You want a song for  Wild Horses
+Error occurred: [object Object])
 
-`$ node liri2.js spotify-this-song "Car Wash"this is loaded
-You want a song for  Car Wash
-Unhandled rejection StatusCodeError: 400 - {"error":"invalid_client","error_description":"Invalid client secret"}`
+***Default***
+(works)
+`Anita@DESKTOP-QMSIH77 MINGW64 ~/Desktop/Assignments/liri-bot (master)
+$ node liri.js
+this is loaded
+No idea what you are asking for...`
 
 @ Anita McFarland
