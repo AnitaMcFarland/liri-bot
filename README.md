@@ -51,6 +51,7 @@ Files needed:
 
 ***Concert-this:***  
 (I am having errors with the date of the event.)
+![Concert-this screenshot]![Concert this](./images/concert-this.png)
 
 `Name of the venue: Tacoma Dome
 Venue:Tacoma
@@ -63,7 +64,7 @@ TypeError: bandsintown[0].venue.datetime is not a function
 ***Movie-this:***
 
 (works)
-![Movie-this screenshot]![Movie this](./image/movie-this.png)
+![Movie-this screenshot]![Movie this](./images/movie-this.png)
 
 `$ node liri.js movie-this "Star Wars"
 this is loaded
@@ -82,6 +83,7 @@ You want movie info on  Star Wars
 (this is loaded
 You want a song for  Wild Horses
 Error occurred: [object Object])
+![Spotify-this screenshot]![Spotify this](./images/spotify-this.png)
 
 ***Default***
 (works)
