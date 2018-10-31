@@ -17,18 +17,18 @@ Files needed:
 7. package.json
 
 ## What Each Command Should Do
-**Concert this** will search for bands in Town Artist Events. For an artist, the following information will return to the terminal: (*node liri.js concert-this + name of band*)
+**Concert this** will search for bands in Town Artist Events. For an artist, the following information will return to the terminal: (node liri.js concert-this <artist/band name here>)
 1. Name of Venue
 2. Venue location
 3. Date of the Event (MM/DD/YYYY)
 
-**Spotify this** song will search information about the song and return to the terminal: (*node liri.js spotify-this-song + name of song*)
+ **Spotify this** song will search information about the song and return to the terminal: (node liri.js spotify-this-song "song name here")
 1. Artist(s)
 2. The song's name
 3. A preview link of the song from Spotify
 4. The album that the song is from
 
-**Movie this** will search for information about movies and return to the terminal: (*node liri.js movie-this + name of movie*)
+**Movie this** will search for information about movies and return to the terminal: (node liri.js movie-this "movie name")
 1. Title of the movie
 2. Year of the movie
 3. IMBD Rating of the movie
@@ -41,7 +41,34 @@ Files needed:
 **Do what it says** will take the text inside of random.txt and use it to call one of LIRI's commands.
 
 
+**How it runs**
 
+***Concert-this:***  
+(I am having errors with the date of the event.)
 
+`Name of the venue: Tacoma Dome
+Venue:Tacoma
+c:\Users\anita\Desktop\Assignments\liri-bot\liri2.js:50
+          console.log("Date of the Event: " + bandsintown[0].venue.datetime("HH:mm"));`
+                                                                   ^
+
+TypeError: bandsintown[0].venue.datetime is not a function
+
+***Movie-this:***
+
+(link won't connect)
+
+`$ node liri2.js movie-this 'Halloween'
+this is loaded
+You want movie info on  Halloween
+'https://www.omdbapi.com/?t=Halloween&y=&plot=short&apikey=d63442d2266e4fa5b56d6f503b3397a1'`
+
+***Spotify-this:***
+
+(Invalid client)
+
+`$ node liri2.js spotify-this-song "Car Wash"this is loaded
+You want a song for  Car Wash
+Unhandled rejection StatusCodeError: 400 - {"error":"invalid_client","error_description":"Invalid client secret"}`
 
 @ Anita McFarland

@@ -1,63 +1,67 @@
 //initialize dotenv
 require("dotenv").config();
 
-//NPM modules
-//local modules
-var movieName = "";
-var bandsintown = Artists;
+var moment = require('moment');
+var request = require('request')
+
 const action = process.argv[2];
 const input = process.argv[3];
-var moment = require('moment');
-moment().format();
-
 const keys = require("./keys.js");
-var Spotify = require('node-spotify-api');
+var Spotify = require('node-spotify-api')
+
 var spotify = new Spotify(keys.spotify);
 
-// bands in town search
-var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
+switch (action) {
+    case 'concert-this':
+        console.log("You want a concert for ", input);
+        concertThis()
+        break;
+    case 'spotify-this-song':
+        console.log("You want a song for ", input);
+        spotifyThis()
+        break;
+    case 'movie-this':
+        console.log("You want movie info on ", input);
+        movieThis()
+        break;
+    case 'do-what-it-says':
+        console.log("Do what it says");
+        doWhatItSays()
+        break;
+    default:
+        console.log("No idea what you are asking for...");
 
-request(queryUrl, function (error, response, body) {
+}
 
-    // If the request is successful
-    if (!error && response.statusCode === 200) {
+function concertThis(){
+    // bands in town search
+    var queryUrl = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp"
 
-        var bandsintown = JSON.parse(body, null, 2);
+    request(queryUrl, function (error, response, body) {
+        
+        if (!error && response.statusCode === 200) {
+            var bandsintown = JSON.parse(body);
 
-        console.log("Name of the venue: " + bandsintown.Artists),
-            console.log("Venue location: " + bandsintown.Location),
-            console.log("Date of the Event: " + bandsintown.concertTime.moment("HH:mm"));
+            console.log(bandsintown)
+            
+            
+          console.log("Name of the venue: " + bandsintown[0].venue.name),
+          console.log("Venue:" + bandsintown[0].venue.city);
 
+        //   console.log("Date of the Event: " + bandsintown.venue.date.time("HH:mm"));
+            
+        }
+    });
+}
+function spotifyThis(){
 
-    }
-});
-
-
-// end getBands function
-
-
-request(queryUrl, function (error, response, body) {
-
-    if (!error && response.statusCode === 200) {
-
-        // Parse the body of the site and recover just the imdbRating
-
-        console.log("Release Year: " + JSON.parse(body).Year);
-    }
-
-})
-
-
-function getSpotify(input) {
     var spotify = new Spotify({
         id: "d63442d2266e4fa5b56d6f503b3397a1",
         secret: "f1aba38db6c24267a02301d55e1b526et",
     });
-    if (input) {
-        spotify.search({
-            type: 'track',
-            query: input
-        }, function (err, data) {
+        spotify
+        .request('https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
+        .then (function (err, data) {
             //Let the user know if they encountered an error 
             if (err) {
                 return console.log('Error occurred: ' + err);
@@ -75,90 +79,59 @@ function getSpotify(input) {
             console.dir("The album that the song is from: " + data.tracks.items[0].album.name);
             console.log('----------------');
 
-        }); //end spotify.search	
+        }); //end spotify.search
+}
+function movieThis(){
+    var queryUrl = "https://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=d63442d2266e4fa5b56d6f503b3397a1";
+     
+    console.dir(queryUrl);
+   request(queryUrl, function (error, response, body) {
+       // If the request is successful
+       if (!error && response.statusCode === 200) {
 
-        //getMovie function 
-        function getMovie() {
+           var omdb = JSON.parse(body, null, 2);
 
-            // Then run a request to the OMDB API with the movie specified
-            var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&plot=short&apikey=f1aba38db6c24267a02301d55e1b526e";
+           console.dir("Title of the movie: " + omdb.Title);
+           console.dir("Year the movie came out: " + omdb.Year);
+           console.dir("imdbRating: " + omdb.imdbRating);
+           console.dir("Rotten Tomatoes Rating of the movie: " + omdb.Ratings[1].Value);
+           console.dir("Language: " + omdb.Language);
+           console.dir("Plot: " + omdb.Plot);
+           console.dir("Actors: " + omdb.Actors);
 
-            // This line is just to help us debug against the actual URL.
-            console.dir(queryUrl);
+       }
 
-            request(queryUrl, function (error, response, body) {
+   })
 
-                // If the request is successful
-                if (!error && response.statusCode === 200) {
-
-                    var omdb = JSON.parse(body, null, 2);
-
-                    console.dir("Title of the movie: " + omdb.Title);
-                    console.dir("Year the movie came out: " + omdb.Year);
-                    console.dir("imdbRating: " + omdb.imdbRating);
-                    console.dir("Rotten Tomatoes Rating of the movie: " + omdb.Ratings[1].Value);
-                    console.dir("Language: " + omdb.Language);
-                    console.dir("Plot: " + omdb.Plot);
-                    console.dir("Actors: " + omdb.Actors);
-
-                }
-
-            });
-
-        } // end getMovie function
+};// end getMovie function
 
 
 
-        request(queryUrl, function (error, response, body) {
+    
 
-            if (!error && response.statusCode === 200) {
+function doWhatItSays(){
+    console.log("Do what it says");
+    
+    
+}
 
-                // Parse the body of the site and recover just the imdbRating
-                // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
-                console.log("Release Year: " + JSON.parse(body).Year);
-            }
 
+function readFile() {
 
-        });
+    //Use fs to read info from a local file
+    fs.readFile("random.txt", "utf-8", function (error, data) {
 
-        function checkArg(argument, input) {
-            switch (action) {
-                case 'concert-this':
-                    console.log("You want a concert for ", input);
-                    break;
-                case 'spotify-this-song':
-                    console.log("You want a song for ", input);
-                    break;
-                case 'movie-this':
-                    console.log("You want movie info on ", input);
-                    break;
-                case 'do-what-it-says':
-                    console.log("Do what it says");
-                    break;
-                default:
-                    console.log("No idea what you are asking for...");
-
-            }
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+            return console.log(error);
         }
 
-        function readFile() {
+        // Then split the text into an array by commas (to make it more readable) and trim white spaces
+        var dataArr = data.trim().split(",");
 
-            //Use fs to read info from a local file
-            fs.readFile("random.txt", "utf-8", function (error, data) {
-
-                // If the code experiences any errors it will log the error to the console.
-                if (error) {
-                    return console.log(error);
-                }
-
-                // Then split the text into an array by commas (to make it more readable) and trim white spaces
-                var dataArr = data.trim().split(",");
-
-                // We will then re-display the content as an array for later use.
-                console.log(dataArr);
+        // We will then re-display the content as an array for later use.
+        console.log(dataArr);
 
 
-            })
-        }
-    }
-};
+    })
+}
