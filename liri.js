@@ -48,7 +48,7 @@ function concertThis(){
           console.log("Name of the venue: " + bandsintown[0].venue.name),
           console.log("Venue:" + bandsintown[0].venue.city);
 
-        //   console.log("Date of the Event: " + bandsintown.venue.date.time("HH:mm"));
+        //   console.log("Date of the Event: " + bandsintown.venue.date.time("MM/DD/YYYY"));
             
         }
     });

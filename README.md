@@ -63,10 +63,11 @@ TypeError: bandsintown[0].venue.datetime is not a function
 ***Movie-this:***
 
 (works)
+
 `$ node liri.js movie-this "Star Wars"
 this is loaded
 You want movie info on  Star Wars
-'https://www.omdbapi.com/?t=Star Wars&y=&plot=short&apikey=326e5bfc'
+'<https://www.omdbapi.com/?t=Star> Wars&y=&plot=short&apikey=326e5bfc'
 'Title of the movie: Star Wars: Episode IV - A New Hope'
 'Year the movie came out: 1977'
 'imdbRating: 8.6'
