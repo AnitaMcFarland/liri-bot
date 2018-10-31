@@ -63,7 +63,7 @@ TypeError: bandsintown[0].venue.datetime is not a function
 ***Movie-this:***
 
 (works)
-![Movie-this screenshot](https://github.com/AnitaMcFarland/liri-bot/blob/master/images/movie-this.png)
+![Movie-this screenshot]![Movie this](./image/movie-this.png)
 
 `$ node liri.js movie-this "Star Wars"
 this is loaded
